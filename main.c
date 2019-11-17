@@ -70,8 +70,8 @@ int mixCardTray(void) {
 	
 	printf("\n\nBefore MixCard\n");
 	for(i = 0; i < N_CARDSET*N_CARD; i++) {
-      CardTray[i] = i + 1;
-      printf(" %d",CardTray[i]);
+    	CardTray[i] = i + 1;
+    	printf(" %d",CardTray[i]);
    }
    printf("\n\nAfter MixCard\n");
    int rnd1,rnd2 = 0;
@@ -122,13 +122,31 @@ int configUser(void) {
 
 //betting
 int betDollar(void) {
-   int money=NULL;
-   printf("\n\nBetting : ");
+   int money=NULL; int i;
+   printf("\n");
+   //컴퓨터 베팅
+   for (i = 0; i < n_user - 1; i++) {
+      Sleep(200);
+      while (1) {
+         money = rand() % dollar[i];
+         if (money > 0) {
+            break;
+         }
+      }
+      printf("\nUser%d Betting : %d", i + 1, money);
+      dollar[i] = dollar[i] - money;
+   }
+   //플레이어 베팅
+   printf("\nMy Betting : ");
    scanf("%d", &money);
-   if (money < dollar[n_user]) {
-      printf("\n-$%d", money);
-      dollar[n_user] = dollar[n_user] - money;
-      printf("\nNow $%d In Account\n", dollar[n_user]);
+   while (1) {
+      if (money > 0 && money < dollar[n_user-1]) {
+         dollar[n_user-1] = dollar[n_user-1] - money;
+         break;
+      }
+      else {
+         printf("\nInvalid Number. Check your account");
+      }
    }
 }
 
