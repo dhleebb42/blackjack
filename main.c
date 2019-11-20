@@ -315,13 +315,12 @@ void printCardInitialStatus(void) {
 	}
 }
 
-int getAction(void) {
+int getAction(int user) {
 	//GO 할떄 코드입니다.
 	//현재 카드 수 먼저 확인하고
 	//카드 추가로 배열에 지정해주고
 	//다시 시작으로 돌아가주면 됩니다.
 
-	int user;
 	int slot = 0;
 	//빈슬롯 파악용
 	Sleep(1000);
