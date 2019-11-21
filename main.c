@@ -435,24 +435,7 @@ int checkResult(int roundIndex) {
 		//when dealer is over 21
 		if (cardSum[n_user] > 21) {
         	printf("\nAll Player Win");
-        	for (i = 0; i < n_user; i++) {
-            	Sleep(300);
-            
-				switch (DieBlack[i]) {
-            	case 0:
-            		printf("\n   User%d  +$%d", i + 1, bet[i]);
-        			dollar[i] = dollar[i] + (bet[i] * 2);
-            		break;
-        		case 1:
-            		printf("\n   User%d  -$%d", i + 1, bet[i]);
-            		break;
-            	case 2:
-            		printf("\n   User%d  +$%d", i + 1, bet[i] * 2);
-            		dollar[i] = dollar[i] + (bet[i] * 3);
-        			break;
-        		}
-
-        	}
+		extern int source1();
     	}
     	
     	if (cardSum[n_user] <= 21) {
@@ -507,28 +490,7 @@ int checkResult(int roundIndex) {
         	else {
             	//when dealer is under 21
         		printf("\nDealer Under 21. Checking Player CardSum...");
-            
-				for (i = 0; i < n_user; i++) {
-            		Sleep(300);
-            		switch (DieBlack[i]) {
-            		case 0:
-                		if (cardSum[i] >= cardSum[n_user]) {
-							printf("\n   User%d  +$%d", i + 1, bet[i]);
-                    		dollar[i] = dollar[i] + (bet[i] * 2);
-                		}
-            			if (cardSum[i] < cardSum[n_user]) {
-							printf("\n   User%d  -$%d", i + 1, bet[i]);
-                		}
-                		break;
-            		case 1:
-                		printf("\n   User%d  -$%d", i + 1, bet[i]);
-                		break;
-            		case 2:
-                		printf("\n   User%d  +$%d", i + 1, bet[i] * 2);
-                		dollar[i] = dollar[i] + (bet[i] * 3);
-                		break;
-            		}
-        		}
+				extern int source1();
         	}
     	}
     	
