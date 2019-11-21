@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <Windows.h>
 #include <time.h>
+#include "printCard.c"
 
 #define N_CARDSET			1
 #define N_CARD				52
@@ -60,88 +61,7 @@ int getCardNum(int cardnum) {
 }
 
 //print the card information (e.g. DiaA)
-void printCard(int cardnum) {
-	int imgflag;
-	imgflag = (cardnum - 1) / 13;
-		switch (imgflag) {
-		case 0:
-        	printf("¡ß");
-        	switch (cardnum%13) {
-        	case 0:
-        		printf("K ");
-        		break;
-        	case 1:
-            	printf("A ");
-            	break;
-        	case 11:
-            	printf("J ");
-            	break;
-        	case 12:
-            	printf("Q ");
-            	break;
-        	default:
-            	printf("%d ", cardnum % 13);
-    		}
-        	break;
-		case 1:
-        	printf("¢¼");
-        	switch (cardnum % 13) {
-        	case 0:
-        		printf("K ");
-            	break;
-        	case 1:
-        		printf("A ");
-        		break;
-        	case 11:
-        		printf("J ");
-        		break;
-        	case 12:
-        		printf("Q ");
-        		break;
-        	default:
-        		printf("%d ", cardnum % 13);
-        	}
-        	break;
-    	case 2:
-        	printf("¢À");
-        	switch (cardnum % 13) {
-        	case 0:
-            	printf("K ");
-            	break;
-        	case 1:
-            	printf("A ");
-            	break;
-        	case 11:
-            	printf("J ");
-            	break;
-        	case 12:
-            	printf("Q ");
-            	break;
-        	default:
-            	printf("%d ", cardnum % 13);
-        	}
-        	break;
-    	case 3:
-        	printf("¢¾");
-        	switch (cardnum % 13) {
-        	case 0:
-        		printf("K ");
-        		break;
-        	case 1:
-        		printf("A ");
-        		break;
-        	case 11:
-        		printf("J ");
-        		break;
-        	case 12:
-        		printf("Q ");
-        		break;
-        	default:
-        		printf("%d ", cardnum % 13);
-        	}
-        	break;
-    	}
-}
+extern void printCard();
 
 
 
@@ -438,27 +358,27 @@ int checkResult(int roundIndex) {
 		//when dealer is over 21
 		if (cardSum[n_user] > 21) {
         	printf("\nAll Player Win");
-			for (i = 0; i < n_user; i++) {
-			Sleep(300);
-		    switch (DieBlack[i]) {
-		    	case 0:
-		    	    if (cardSum[i] >= cardSum[n_user]) {
-						printf("\n   User%d  +$%d", i + 1, bet[i]);
-			            dollar[i] = dollar[i] + (bet[i] * 2);
-			        }
-			        if (cardSum[i] < cardSum[n_user]) {
-						printf("\n   User%d  -$%d", i + 1, bet[i]);
-			        }
-			        break;
-			    case 1:
-			        printf("\n   User%d  -$%d", i + 1, bet[i]);
-			        break;
-			    case 2:
-			        printf("\n   User%d  +$%d", i + 1, bet[i] * 2);
-			        dollar[i] = dollar[i] + (bet[i] * 3);
-			        break;
-			    }
-			}
+				for (i = 0; i < n_user; i++) {
+				Sleep(300);
+				    switch (DieBlack[i]) {
+			    	case 0:
+			    	    if (cardSum[i] >= cardSum[n_user]) {
+							printf("\n   User%d  +$%d", i + 1, bet[i]);
+				            dollar[i] = dollar[i] + (bet[i] * 2);
+				        }
+				        if (cardSum[i] < cardSum[n_user]) {
+							printf("\n   User%d  -$%d", i + 1, bet[i]);
+				        }
+				        break;
+					case 1:
+				        printf("\n   User%d  -$%d", i + 1, bet[i]);
+				        break;
+				    case 2:
+				        printf("\n   User%d  +$%d", i + 1, bet[i] * 2);
+				        dollar[i] = dollar[i] + (bet[i] * 3);
+				        break;
+				    }	
+				}
     	}
     	
     	if (cardSum[n_user] <= 21) {
@@ -758,4 +678,3 @@ int main(int argc, char *argv[]) {
 	return 0;
 }
 
-//professor,,,,,, i divided the sources but it does not work well,,,,,,,,,,,, so i went back to 

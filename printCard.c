@@ -80,4 +80,3 @@ void printCard(int cardnum) {
         	break;
     	}
 }
-
